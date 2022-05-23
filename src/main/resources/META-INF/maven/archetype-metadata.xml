@@ -15,13 +15,25 @@
                 <exclude>**/*.xml</exclude>
             </excludes>
         </fileSet>
-
         <fileSet filtered="true" packaged="true">
             <directory>src/main/java</directory>
         </fileSet>
         <fileSet filtered="true" packaged="true">
             <directory>src/test/java</directory>
         </fileSet>
+        <fileSet>
+            <directory></directory>
+            <includes>
+                <include>mvnw</include>
+                <include>mvnw.cmd</include>
+                <include>settings.xml</include>
+                <include>.gitignore</include>
+                <include>.mvn/wrapper/maven-wrapper.jar</include>
+                <include>.mvn/wrapper/maven-wrapper.properties</include>
+                <include>buildspec.yml</include>
+            </includes>
+        </fileSet>
+
     </fileSets>
 
 </archetype-descriptor>

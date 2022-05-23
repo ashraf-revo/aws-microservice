@@ -14,10 +14,22 @@
     <name>${artifactId}</name>
     <description>${artifactId} project for Spring Boot</description>
     <properties>
-        <java.version>17</java.version>
+        <java.version>11</java.version>
         <spring-cloud.version>2021.0.3-SNAPSHOT</spring-cloud.version>
+        <docker.imageName>tube</docker.imageName>
+        <docker.fromImage>adoptopenjdk-11-jre</docker.fromImage>
+        <build.number>0</build.number>
+
+        <!--        <spring-cloud-aws-version>2.3.2</spring-cloud-aws-version>-->
+        <!--        <aws-java-sdk.version>1.11.951</aws-java-sdk.version>-->
+
     </properties>
     <dependencies>
+        <dependency>
+            <groupId>com.asrevo</groupId>
+            <artifactId>spring-cloud-starter-ecs-discoveryclient</artifactId>
+            <version>0.0.1</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
@@ -65,12 +77,40 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
+                    <imageName>${docker.imageName}:${build.number}</imageName>
                     <excludes>
                         <exclude>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>pl.project13.maven</groupId>
+                <artifactId>git-commit-id-plugin</artifactId>
+                <version>4.9.10</version>
+                <configuration>
+                    <failOnNoGitDirectory>false</failOnNoGitDirectory>
+                    <offline>true</offline>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>3.1.4</version>
+                <configuration>
+                    <from>
+                        <image>${docker.fromImage}</image>
+                    </from>
+                    <to>
+                        <image>${docker.imageName}:${build.number}</image>
+                    </to>
+                    <container>
+                        <environment>
+                            <INFO_BUILD_NUMBER>${build.number}</INFO_BUILD_NUMBER>
+                        </environment>
+                    </container>
                 </configuration>
             </plugin>
         </plugins>
