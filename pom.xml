@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.asrevo.archetypes</groupId>
     <artifactId>aws-microservice</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
     <name>aws-microservice</name>
     <packaging>maven-archetype</packaging>
     <description>Demo project for Spring Boot</description>
