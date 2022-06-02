@@ -4,6 +4,9 @@ phases:
   pre_build:
     commands:
       - echo "pre_build"
+      - apt-get update;  apt-get install -y java-17-amazon-corretto-jdk
+      - update-alternatives --set java /usr/lib/jvm/java-17-amazon-corretto/bin/java
+      - export JAVA_HOME=/usr/lib/jvm/java-17-amazon-corretto
       - aws ecr get-login-password --region ${REGION} | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.${REGION}.amazonaws.com
   build:
     commands:

@@ -14,10 +14,10 @@
     <name>${artifactId}</name>
     <description>${artifactId} project for Spring Boot</description>
     <properties>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
         <spring-cloud.version>2021.0.3-SNAPSHOT</spring-cloud.version>
         <docker.imageName>tube</docker.imageName>
-        <docker.fromImage>adoptopenjdk-11-jre</docker.fromImage>
+        <docker.fromImage>azul/zulu-openjdk:17-jre</docker.fromImage>
         <build.number>0</build.number>
 
         <!--        <spring-cloud-aws-version>2.3.2</spring-cloud-aws-version>-->
@@ -38,11 +38,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-        </dependency>
-
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -104,7 +99,11 @@
                         <image>${docker.fromImage}</image>
                     </from>
                     <to>
-                        <image>${docker.imageName}:${build.number}</image>
+                        <image>${docker.imageName}</image>
+                        <tags>
+                            <tag>${build.number}</tag>
+                            <tag>latest</tag>
+                        </tags>
                     </to>
                     <container>
                         <environment>
