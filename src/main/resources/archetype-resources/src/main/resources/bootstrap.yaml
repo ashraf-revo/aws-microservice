@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: ${artifactId}
+info:
+  application:
+    name: ${artifactId}
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: [ '*' ]
+
